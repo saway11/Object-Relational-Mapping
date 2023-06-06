@@ -1,6 +1,5 @@
--- SQL script that creates the necessary database tables for an e-commerce application
-DROP DATABASE IF EXISTS ecommerce_db;
-CREATE DATABSE ecommerce_db;
+-DROP DATABASE IF EXISTS ecommerce_db;
+CREATE DATABASE ecommerce_db;
 
 USE ecommerce_db;
 
@@ -8,7 +7,7 @@ CREATE TABLE Category (
     id INT AUTO_INCREMENT NOT NULL,
     category_name VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
-);
+); 
 
 CREATE TABLE Product (
     id INT AUTO_INCREMENT NOT NULL,
@@ -30,7 +29,7 @@ CREATE TABLE ProductTag (
     id INT AUTO_INCREMENT NOT NULL,
     product_id INT NOT NULL,
     tag_id INT NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
     FOREIGN KEY (product_id) REFERENCES Product(id),
     FOREIGN KEY (tag_id) REFERENCES Tag(id)
 );
