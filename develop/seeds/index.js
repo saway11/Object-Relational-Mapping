@@ -6,8 +6,14 @@ const seedProductTags = require('./product-tag-seeds');
 const sequelize = require('../config/connection');
 
 const seedAll = async () => {
+
+  try {
+
+  await sequelize.query('SET FOREIGN_KEY_CHECKS = 0', { raw: true });
+
   await sequelize.sync({ force: true });
   console.log('\n----- DATABASE SYNCED -----\n');
+
   await seedCategories();
   console.log('\n----- CATEGORIES SEEDED -----\n');
 
@@ -21,6 +27,10 @@ const seedAll = async () => {
   console.log('\n----- PRODUCT TAGS SEEDED -----\n');
 
   process.exit(0);
+  } catch (err) {
+    console.log(err);
+    process.exit(1);
+  }
 };
 
 seedAll();
